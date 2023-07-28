@@ -10,6 +10,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
+import java.util.Random;
+
 public class GameEntityFactory implements EntityFactory {
     @Spawns("player")
     public Entity newPlayer(SpawnData data){
@@ -26,7 +28,8 @@ public class GameEntityFactory implements EntityFactory {
         return FXGL.entityBuilder(data)
                 .type(EntityType.BRICK)
                 .collidable()
-                .viewWithBBox(new Rectangle(50, 30, Color.BROWN))
+                .viewWithBBox(new Rectangle(data.get("width"), 30, Color.BROWN)) //random width
+                .at(data.get("x"), data.get("y"))
                 .buildAndAttach();
     }
 

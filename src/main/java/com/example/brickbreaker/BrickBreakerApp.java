@@ -4,40 +4,64 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.SpawnData;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Map;
+import java.util.Random;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 public class BrickBreakerApp extends GameApplication {
     private Entity player;
     private Entity ball;
+    private boolean isGameStarted;
     @Override
     protected void initSettings(GameSettings gameSettings) {
         gameSettings.setTitle("Brick Breaker");
         gameSettings.setHeight(Glob.WINDOW_HEIGHT);
         gameSettings.setWidth(Glob.WINDOW_WIDTH);
-        gameSettings.setDeveloperMenuEnabled(true);
     }
 
     @Override
     protected void initGame() {
+        isGameStarted = false;
         FXGL.getGameWorld().addEntityFactory(new GameEntityFactory());
 
-        player = spawn("player");
-        spawn("brick", 100, 100);
-        spawn("brick", 200, 100);
-        spawn("brick", 300, 100);
-        spawn("brick", 400, 100);
-        spawn("brick", 100, 200);
-        spawn("brick", 150, 200);
-        ball = spawn("ball", 500, 300);
-
         FXGL.entityBuilder().type(EntityType.BORDER).collidable().viewWithBBox(new Rectangle(570,570, Color.TRANSPARENT)).at(15,15).buildAndAttach();
+
+        player = spawn("player");
+
+        spawnBricks();
+
+        ball = spawn("ball", 300, 450);
+
+    }
+
+    private void spawnBricks(){
+        Random r = new Random();
+        SpawnData data = new SpawnData();
+        double x = 5;
+        double y = 100;
+        for(int i=0; i<7; i++){
+            while(x < 500){
+                double width = r.nextDouble(30, 80);
+                data.put("width", width);
+                data.put("x", x);
+                data.put("y", y);
+                spawn("brick", data);
+                x += width + 10;
+            }
+            data.put("width", 595 - x);
+            data.put("x", x);
+            data.put("y", y);
+            spawn("brick", data);
+            x = 5;
+            y += 40;
+        }
     }
 
     @Override
@@ -53,6 +77,10 @@ public class BrickBreakerApp extends GameApplication {
                 player.translateX(-3);
             }
         });
+
+        FXGL.onKey(KeyCode.ENTER, () ->{
+            isGameStarted = true;
+        });
     }
 
     @Override
@@ -62,8 +90,10 @@ public class BrickBreakerApp extends GameApplication {
 
     @Override
     protected void onUpdate(double tpf) {
-        Point2D ballVelocity = ball.getObject("velocity");
-        ball.translate(ballVelocity);
+        if(isGameStarted){
+            Point2D ballVelocity = ball.getObject("velocity");
+            ball.translate(ballVelocity);
+        }
     }
 
     @Override
