@@ -26,7 +26,7 @@ public class GameEntityFactory implements EntityFactory {
         return FXGL.entityBuilder(data)
                 .type(EntityType.BRICK)
                 .collidable()
-                .viewWithBBox(new Rectangle(30, 20, Color.BROWN))
+                .viewWithBBox(new Rectangle(50, 30, Color.BROWN))
                 .buildAndAttach();
     }
 

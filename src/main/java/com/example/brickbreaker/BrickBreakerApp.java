@@ -30,7 +30,12 @@ public class BrickBreakerApp extends GameApplication {
 
         player = spawn("player");
         spawn("brick", 100, 100);
-        ball = spawn("ball", 500, 10);
+        spawn("brick", 200, 100);
+        spawn("brick", 300, 100);
+        spawn("brick", 400, 100);
+        spawn("brick", 100, 200);
+        spawn("brick", 150, 200);
+        ball = spawn("ball", 500, 300);
 
         FXGL.entityBuilder().type(EntityType.BORDER).collidable().viewWithBBox(new Rectangle(570,570, Color.TRANSPARENT)).at(15,15).buildAndAttach();
     }
@@ -59,9 +64,6 @@ public class BrickBreakerApp extends GameApplication {
     protected void onUpdate(double tpf) {
         Point2D ballVelocity = ball.getObject("velocity");
         ball.translate(ballVelocity);
-        System.out.println("VELOCITY: " + ballVelocity);
-        Point2D ballPosition = ball.getPosition();
-        System.out.println("POSITION: " + ballPosition);
     }
 
     @Override
@@ -82,6 +84,22 @@ public class BrickBreakerApp extends GameApplication {
             }else{ //top rect wall
                 ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
             }
+            return null;
+        });
+
+        onCollision(EntityType.BALL, EntityType.BRICK, (ball, brick) -> {
+            Point2D ballVelocity = ball.getObject("velocity");
+            Point2D ballPosition = ball.getPosition();
+
+            System.out.println("BRICK POS: " + brick.getCenter());
+            System.out.println("BALL POS: " + ballPosition);
+
+            if(ballPosition.getY() == brick.getCenter().getY() - 35 || ballPosition.getY() == brick.getCenter().getY() + 15){ //check if ball collided with top or bottom of the brick
+                ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
+            }else{ //left or right of the brick
+                ball.setProperty("velocity", new Point2D(-ballVelocity.getX(), ballVelocity.getY()));
+            }
+            brick.removeFromWorld();
             return null;
         });
     }
