@@ -5,6 +5,7 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
+import com.example.brickbreaker.components.HpComponent;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -26,7 +27,7 @@ public class GameEntityFactory implements EntityFactory {
                 .type(EntityType.BRICK)
                 .collidable()
                 .viewWithBBox("brick.png")
-//                .with(new HpComponent())
+                .with(new HpComponent(3))
                 .buildAndAttach();
     }
 

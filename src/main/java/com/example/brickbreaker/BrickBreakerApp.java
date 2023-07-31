@@ -4,10 +4,16 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.physics.BoundingShape;
+import com.almasb.fxgl.texture.Texture;
+import com.example.brickbreaker.components.HpComponent;
 import com.example.brickbreaker.menu.CustomSceneFactory;
+import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Map;
@@ -116,16 +122,13 @@ public class BrickBreakerApp extends GameApplication {
             System.out.println("BRICK POS: " + brick.getCenter());
             System.out.println("BALL POS: " + ballPosition);
 
-//            System.out.println(brick.getComponent(HpComponent.class).getHp());
-//            brick.getComponent(HpComponent.class).setHp(brick.getComponent(HpComponent.class).getHp() - 1);
-//            System.out.println(brick.getComponent(HpComponent.class).getHp());
+            brick.getComponent(HpComponent.class).changeTexture(brick);
 
-            if(ballPosition.getY() == brick.getCenter().getY() - 35 || ballPosition.getY() == brick.getCenter().getY() + 15){ //check if ball collided with top or bottom of the brick
+            if(ballPosition.getY() == brick.getCenter().getY() - 30 || ballPosition.getY() == brick.getCenter().getY() + 10){ //check if ball collided with top or bottom of the brick
                 ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
             }else{ //left or right of the brick
                 ball.setProperty("velocity", new Point2D(-ballVelocity.getX(), ballVelocity.getY()));
             }
-            brick.removeFromWorld();
             return null;
         });
     }
