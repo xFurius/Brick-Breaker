@@ -7,7 +7,6 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class GameEntityFactory implements EntityFactory {
@@ -26,8 +25,8 @@ public class GameEntityFactory implements EntityFactory {
         return FXGL.entityBuilder(data)
                 .type(EntityType.BRICK)
                 .collidable()
-                .viewWithBBox(new Rectangle(data.get("width"), 30, Color.BROWN)) //random width
-                .at(data.get("x"), data.get("y"))
+                .viewWithBBox("brick.png")
+//                .with(new HpComponent())
                 .buildAndAttach();
     }
 
@@ -36,7 +35,7 @@ public class GameEntityFactory implements EntityFactory {
         return FXGL.entityBuilder(data)
                 .type(EntityType.BALL)
                 .collidable()
-                .viewWithBBox(new Circle(10, 10, 10))
+                .viewWithBBox("ball.png")
                 .with("velocity", new Point2D(Glob.BALL_VELOCITY_X,  Glob.BALL_VELOCITY_Y))
                 .buildAndAttach();
     }

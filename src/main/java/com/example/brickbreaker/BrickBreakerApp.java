@@ -4,7 +4,6 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.SpawnData;
 import com.example.brickbreaker.menu.CustomSceneFactory;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
@@ -12,7 +11,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Map;
-import java.util.Random;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
@@ -36,33 +34,33 @@ public class BrickBreakerApp extends GameApplication {
 
         player = spawn("player");
 
-        spawnBricks();
+        spawn("brick", 100, 100);
 
         ball = spawn("ball", 300, 450);
     }
 
-    private void spawnBricks(){
-        Random r = new Random();
-        SpawnData data = new SpawnData();
-        double x = 5;
-        double y = 100;
-        for(int i=0; i<6; i++){
-            while(x < 500){
-                double width = r.nextDouble(30, 80);
-                data.put("width", width);
-                data.put("x", x);
-                data.put("y", y);
-                spawn("brick", data);
-                x += width + 10;
-            }
-            data.put("width", 595 - x);
-            data.put("x", x);
-            data.put("y", y);
-            spawn("brick", data);
-            x = 5;
-            y += 40;
-        }
-    }
+//    private void spawnBricks(){
+//        Random r = new Random();
+//        SpawnData data = new SpawnData();
+//        double x = 5;
+//        double y = 100;
+//        for(int i=0; i<6; i++){
+//            while(x < 500){
+//                double width = r.nextDouble(30, 80);
+//                data.put("width", width);
+//                data.put("x", x);
+//                data.put("y", y);
+//                spawn("brick", data);
+//                x += width + 10;
+//            }
+//            data.put("width", 595 - x);
+//            data.put("x", x);
+//            data.put("y", y);
+//            spawn("brick", data);
+//            x = 5;
+//            y += 40;
+//        }
+//    }
 
     @Override
     protected void initInput() {
@@ -117,6 +115,10 @@ public class BrickBreakerApp extends GameApplication {
 
             System.out.println("BRICK POS: " + brick.getCenter());
             System.out.println("BALL POS: " + ballPosition);
+
+//            System.out.println(brick.getComponent(HpComponent.class).getHp());
+//            brick.getComponent(HpComponent.class).setHp(brick.getComponent(HpComponent.class).getHp() - 1);
+//            System.out.println(brick.getComponent(HpComponent.class).getHp());
 
             if(ballPosition.getY() == brick.getCenter().getY() - 35 || ballPosition.getY() == brick.getCenter().getY() + 15){ //check if ball collided with top or bottom of the brick
                 ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
