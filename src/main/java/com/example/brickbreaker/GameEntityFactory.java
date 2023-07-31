@@ -10,8 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-import java.util.Random;
-
 public class GameEntityFactory implements EntityFactory {
     @Spawns("player")
     public Entity newPlayer(SpawnData data){

@@ -5,6 +5,7 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
+import com.example.brickbreaker.menu.CustomSceneFactory;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
@@ -18,17 +19,17 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 public class BrickBreakerApp extends GameApplication {
     private Entity player;
     private Entity ball;
-    private boolean isGameStarted;
     @Override
     protected void initSettings(GameSettings gameSettings) {
         gameSettings.setTitle("Brick Breaker");
         gameSettings.setHeight(Glob.WINDOW_HEIGHT);
         gameSettings.setWidth(Glob.WINDOW_WIDTH);
+        gameSettings.setSceneFactory(new CustomSceneFactory());
+        gameSettings.setMainMenuEnabled(true);
     }
 
     @Override
     protected void initGame() {
-        isGameStarted = false;
         FXGL.getGameWorld().addEntityFactory(new GameEntityFactory());
 
         FXGL.entityBuilder().type(EntityType.BORDER).collidable().viewWithBBox(new Rectangle(570,570, Color.TRANSPARENT)).at(15,15).buildAndAttach();
@@ -38,7 +39,6 @@ public class BrickBreakerApp extends GameApplication {
         spawnBricks();
 
         ball = spawn("ball", 300, 450);
-
     }
 
     private void spawnBricks(){
@@ -46,7 +46,7 @@ public class BrickBreakerApp extends GameApplication {
         SpawnData data = new SpawnData();
         double x = 5;
         double y = 100;
-        for(int i=0; i<7; i++){
+        for(int i=0; i<6; i++){
             while(x < 500){
                 double width = r.nextDouble(30, 80);
                 data.put("width", width);
@@ -77,10 +77,6 @@ public class BrickBreakerApp extends GameApplication {
                 player.translateX(-3);
             }
         });
-
-        FXGL.onKey(KeyCode.ENTER, () ->{
-            isGameStarted = true;
-        });
     }
 
     @Override
@@ -90,10 +86,8 @@ public class BrickBreakerApp extends GameApplication {
 
     @Override
     protected void onUpdate(double tpf) {
-        if(isGameStarted){
-            Point2D ballVelocity = ball.getObject("velocity");
-            ball.translate(ballVelocity);
-        }
+        Point2D ballVelocity = ball.getObject("velocity");
+        ball.translate(ballVelocity);
     }
 
     @Override
