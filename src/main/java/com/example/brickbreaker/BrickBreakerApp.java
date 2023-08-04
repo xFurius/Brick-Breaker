@@ -4,19 +4,15 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.physics.BoundingShape;
-import com.almasb.fxgl.texture.Texture;
-import com.example.brickbreaker.components.HpComponent;
 import com.example.brickbreaker.menu.CustomSceneFactory;
-import javafx.geometry.BoundingBox;
+import javafx.event.Event;
 import javafx.geometry.Point2D;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Map;
+import java.util.Random;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
@@ -40,33 +36,21 @@ public class BrickBreakerApp extends GameApplication {
 
         player = spawn("player");
 
-        spawn("brick", 100, 100);
+        spawnBricks();
 
-        ball = spawn("ball", 300, 450);
+//        spawn("brick", 310, 300);
+        ball = spawn("ball", 280, 350);
     }
 
-//    private void spawnBricks(){
-//        Random r = new Random();
-//        SpawnData data = new SpawnData();
-//        double x = 5;
-//        double y = 100;
-//        for(int i=0; i<6; i++){
-//            while(x < 500){
-//                double width = r.nextDouble(30, 80);
-//                data.put("width", width);
-//                data.put("x", x);
-//                data.put("y", y);
-//                spawn("brick", data);
-//                x += width + 10;
-//            }
-//            data.put("width", 595 - x);
-//            data.put("x", x);
-//            data.put("y", y);
-//            spawn("brick", data);
-//            x = 5;
-//            y += 40;
-//        }
-//    }
+    private void spawnBricks(){
+        Random r = new Random();
+        for(int y = 100; y < 300; y += 25){
+            int temp = r.nextInt(10, 100);
+            for(int x = temp; x<Glob.WINDOW_WIDTH - temp; x += 65){
+                spawn("brick", x, y);
+            }
+        }
+    }
 
     @Override
     protected void initInput() {
@@ -115,22 +99,23 @@ public class BrickBreakerApp extends GameApplication {
             return null;
         });
 
-        onCollision(EntityType.BALL, EntityType.BRICK, (ball, brick) -> {
-            Point2D ballVelocity = ball.getObject("velocity");
-            Point2D ballPosition = ball.getPosition();
+        new Thread(() ->{
+            onCollisionBegin(EntityType.BALL, EntityType.BRICK, (ball, brick) -> {
+                Point2D ballVelocity = ball.getObject("velocity");
+                //            brick.getComponent(HpComponent.class).changeTexture(brick);
 
-            System.out.println("BRICK POS: " + brick.getCenter());
-            System.out.println("BALL POS: " + ballPosition);
+                if(ball.getRightX() == brick.getX() && (ball.getY() < brick.getBottomY() && ball.getBottomY() > brick.getY())){ //left
+                    ball.setProperty("velocity", new Point2D(-ballVelocity.getX(), ballVelocity.getY()));
+                }else if(ball.getX() == brick.getRightX() && (ball.getY() < brick.getBottomY() && ball.getBottomY() > brick.getY())){ //right
+                    ball.setProperty("velocity", new Point2D(-ballVelocity.getX(), ballVelocity.getY()));
+                }else{
+                    ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
+                }
 
-            brick.getComponent(HpComponent.class).changeTexture(brick);
-
-            if(ballPosition.getY() == brick.getCenter().getY() - 30 || ballPosition.getY() == brick.getCenter().getY() + 10){ //check if ball collided with top or bottom of the brick
-                ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
-            }else{ //left or right of the brick
-                ball.setProperty("velocity", new Point2D(-ballVelocity.getX(), ballVelocity.getY()));
-            }
-            return null;
-        });
+                brick.removeFromWorld();
+                return null;
+            });
+        }).run();
     }
 
     public static void main(String[] args) {

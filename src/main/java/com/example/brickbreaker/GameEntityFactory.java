@@ -27,7 +27,7 @@ public class GameEntityFactory implements EntityFactory {
                 .type(EntityType.BRICK)
                 .collidable()
                 .viewWithBBox("brick.png")
-                .with(new HpComponent(3))
+                .with(new HpComponent())
                 .buildAndAttach();
     }
 

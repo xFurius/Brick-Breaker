@@ -7,11 +7,7 @@ import com.almasb.fxgl.texture.Texture;
 import javafx.scene.image.Image;
 
 public class HpComponent extends Component {
-    private int hp;
-
-    public HpComponent(int hp){
-        this.hp=hp;
-    }
+    private int hp = 3;
 
     public void changeTexture(Entity brick){
         this.hp -= 1;
