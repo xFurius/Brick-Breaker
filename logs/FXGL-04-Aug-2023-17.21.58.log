@@ -1,0 +1,144 @@
+17:21:55.311 [main                     ] DEBUG Logger               - Configured Logger
+17:21:55.330 [main                     ] DEBUG GameApplication      - Logging settings
+Title: Brick Breaker
+Version: 0.0
+Width: 600
+Height: 600
+Fullscreen: false
+Intro: false
+Profiling: false
+Single step:false
+App Mode: DEVELOPER
+Menu Key: ESCAPE
+Stage Style: DECORATED
+Scene Factory: class com.example.brickbreaker.menu.CustomSceneFactory
+
+17:21:55.584 [JavaFX Application Thread] DEBUG FXGLApplication      - Initializing FXGL
+17:21:55.588 [JavaFX Application Thread] INFO  Engine               - FXGL-17.2 (20.08.2022 16.50) on WINDOWS (J:18.0.1.1 FX:18.0.2)
+17:21:55.588 [JavaFX Application Thread] DEBUG Engine               - JRE Vendor Name: Oracle Corporation
+17:21:55.588 [JavaFX Application Thread] DEBUG Engine               - Running on OS: Windows 10 version 10.0
+17:21:55.588 [JavaFX Application Thread] DEBUG Engine               - Architecture: amd64
+17:21:55.588 [JavaFX Application Thread] INFO  Engine               - Source code and latest versions at: https://github.com/AlmasB/FXGL
+17:21:55.588 [JavaFX Application Thread] INFO  Engine               -       Ask questions and discuss at: https://github.com/AlmasB/FXGL/discussions
+17:21:55.588 [JavaFX Application Thread] INFO  Engine               -              Join the FXGL chat at: https://gitter.im/AlmasB/FXGL
+17:21:55.637 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Creating a JavaFX scene
+17:21:55.662 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Target settings size: 600.0 x 600.0
+17:21:55.663 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled scene size:    600.0 x 600.0
+17:21:55.663 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled ratio: (1.0, 1.0)
+17:21:55.663 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Set initial scene to FXGLStartupScene
+17:21:55.667 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Opening main window
+17:21:55.707 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Window border size: (16.0, 39.0)
+17:21:55.707 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled size: 600.0 x 600.0
+17:21:55.707 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled ratio: (1.0, 1.0)
+17:21:55.707 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scene size: 600.0 x 600.0
+17:21:55.708 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Stage size: 616.0 x 639.0
+17:21:55.711 [FXGL Background Thread 1 ] DEBUG Engine               - Initializing environment variables
+17:21:55.738 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - User app class for loading assets: class com.example.brickbreaker.BrickBreakerApp
+17:21:55.738 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Applying CSS: fxgl_dark.css
+17:21:55.739 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/matip/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/ui/css/fxgl_dark.css
+17:21:55.763 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Initializing application scenes
+17:21:55.786 [FXGL Background Thread 1 ] DEBUG GameWorld            - Game world initialized
+17:21:55.814 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Physics world initialized: appHeight=600, physics.ppm=50.0
+17:21:55.814 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Using strategy: BRUTE_FORCE
+17:21:55.817 [FXGL Background Thread 1 ] DEBUG GameScene            - Game scene initialized: 600x600
+17:21:55.818 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/matip/Desktop/JavaProjects/brick-breaker/target/classes/assets/textures/brick-wall.png
+17:21:55.849 [FXGL Background Thread 1 ] WARN  FXGL.DefaultMenu     - FXGLDefaultMenu is not designed for resolutions < 800x600
+17:21:55.849 [FXGL Background Thread 1 ] DEBUG FXGL.DefaultMenu     - createMenuBodyGameMenu()
+17:21:55.856 [FXGL Background Thread 1 ] DEBUG FXGL.DefaultMenu     - createOptionsMenu()
+17:21:55.864 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/matip/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/textures/particles/smoke.png
+17:21:55.906 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/matip/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/textures/particles/trace_horizontal.png
+17:21:55.916 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Application scenes initialized
+17:21:55.923 [FXGL Background Thread 1 ] DEBUG SystemBundleService  - Loading FXGL system data
+17:21:55.925 [FXGL Background Thread 1 ] DEBUG FileSystemAccess     - Reading from: C:\Users\matip\Desktop\JavaProjects\brick-breaker\system\fxgl.bundle
+17:21:55.930 [FXGL Background Thread 1 ] DEBUG SystemBundleService  - Bundle FXGL: {}
+17:21:55.930 [FXGL Background Thread 1 ] DEBUG UpdaterService       - Checking for updates
+17:21:55.932 [FXGL Background Thread 4 ] DEBUG FXGLApplication      - Loading fonts
+17:21:55.932 [FXGL Background Thread 1 ] DEBUG FXGLApplication      - Loading default localization
+17:21:55.932 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/matip/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/ui/fonts/VarelaRound-Regular.ttf
+17:21:55.933 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/matip/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/languages/english.lang
+17:21:55.941 [FXGL Background Thread 1 ] INFO  FXGLApplication      - FXGL initialization took: 0.231 sec
+17:21:55.947 [JavaFX Application Thread] DEBUG Input                - Registered new binding: action0 - D
+17:21:55.947 [JavaFX Application Thread] DEBUG Input                - Registered new binding: action1 - A
+17:21:55.947 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/matip/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/textures/fxgl_icon.png
+17:21:55.951 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/matip/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/textures/fxgl_default_cursor.png
+17:21:55.953 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Screenshot - CTRL+8
+17:21:55.953 [JavaFX Application Thread] DEBUG Input                - Registered new binding: System info dump - CTRL+9
+17:21:55.953 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Restart - CTRL+R
+17:21:55.953 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Toggle Debug Camera - CTRL+7
+17:21:55.955 [JavaFX Application Thread] DEBUG LoopRunner           - Starting loop
+17:21:55.955 [JavaFX Application Thread] DEBUG LoopRunner           - Initializing JavaFX AnimationTimerLoop
+17:21:55.956 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+17:21:55.957 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/matip/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/ui/fonts/Abel-Regular.ttf
+17:21:55.959 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/matip/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/ui/fonts/TerminalLandMono-Regular.otf
+17:21:55.960 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLStartupScene and adding to FXGLMainMenuDummyScene
+17:21:55.960 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLStartupScene -> FXGLMainMenuDummyScene
+17:21:55.960 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Push state: MainMenu
+17:21:55.960 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+17:21:55.960 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLMainMenuDummyScene and adding to MainMenu
+17:21:55.961 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene -> MainMenu
+17:21:55.961 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/matip/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/ui/fonts/Courier-Prime.ttf
+17:21:55.967 [JavaFX Application Thread] DEBUG FXGLApplication      - Registering font factories with UI factory
+17:21:56.369 [FXGL Background Thread 2 ] INFO  UpdaterService       - Your current version:  17.2
+17:21:56.369 [FXGL Background Thread 2 ] INFO  UpdaterService       - Latest stable version: 17.3
+17:21:56.564 [JavaFX Application Thread] DEBUG Menu                 - fireNewGame()
+17:21:56.564 [JavaFX Application Thread] DEBUG GameApplicationServi - Starting new game
+17:21:56.564 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Pop state: MainMenu
+17:21:56.564 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+17:21:56.564 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from MainMenu and adding to FXGLMainMenuDummyScene
+17:21:56.564 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene <- MainMenu
+17:21:56.565 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+17:21:56.569 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLMainMenuDummyScene and adding to FXGLLoadingScene
+17:21:56.569 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene -> FXGLLoadingScene
+17:21:56.569 [JavaFX Application Thread] DEBUG GameApplicationServi - Clearing previous game
+17:21:56.569 [JavaFX Application Thread] DEBUG GameScene            - Clearing game scene
+17:21:56.569 [JavaFX Application Thread] DEBUG GameWorld            - Clearing game world
+17:21:56.569 [JavaFX Application Thread] DEBUG PhysicsWorld         - Clearing physics world
+17:21:56.570 [FXGL Background Thread 2 ] DEBUG FXGLApplication      - Initializing game
+17:21:56.581 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.582 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/matip/Desktop/JavaProjects/brick-breaker/target/classes/assets/textures/brick.png
+17:21:56.584 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.584 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.585 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.586 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.586 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.587 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.588 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.588 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.589 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.589 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.590 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.590 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.591 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.592 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.592 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.593 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.593 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.594 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.594 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.595 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.595 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.595 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.595 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.596 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.596 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.596 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.597 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.597 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.598 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.598 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.599 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.599 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.600 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.600 [FXGL Background Thread 2 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/matip/Desktop/JavaProjects/brick-breaker/target/classes/assets/textures/ball.png
+17:21:56.601 [FXGL Background Thread 2 ] WARN  GameWorld            - Entity is already attached to world
+17:21:56.602 [FXGL Background Thread 2 ] INFO  FXGLApplication      - Game initialization took: 0.033 sec
+17:21:56.618 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+17:21:56.622 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLLoadingScene and adding to GameScene
+17:21:56.622 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLLoadingScene -> GameScene
+17:21:58.366 [JavaFX Application Thread] DEBUG FXGLApplication      - Exiting FXGL
+17:21:58.366 [JavaFX Application Thread] DEBUG LoopRunner           - Stopping loop
+17:21:58.366 [JavaFX Application Thread] DEBUG SystemBundleService  - Saving FXGL system data
+17:21:58.367 [JavaFX Application Thread] DEBUG FileSystemAccess     - Writing to: C:\Users\matip\Desktop\JavaProjects\brick-breaker\system\fxgl.bundle
+17:21:58.369 [JavaFX Application Thread] DEBUG Async                - Shutting down background threads
+17:21:58.369 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Closing main window
+17:21:58.379 [JavaFX Application Thread] DEBUG Logger               - Closing Logger

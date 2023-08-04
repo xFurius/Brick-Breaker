@@ -5,7 +5,6 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.example.brickbreaker.menu.CustomSceneFactory;
-import javafx.event.Event;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
@@ -19,6 +18,7 @@ import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 public class BrickBreakerApp extends GameApplication {
     private Entity player;
     private Entity ball;
+    private int[] startingX;
     @Override
     protected void initSettings(GameSettings gameSettings) {
         gameSettings.setTitle("Brick Breaker");
@@ -26,6 +26,16 @@ public class BrickBreakerApp extends GameApplication {
         gameSettings.setWidth(Glob.WINDOW_WIDTH);
         gameSettings.setSceneFactory(new CustomSceneFactory());
         gameSettings.setMainMenuEnabled(true);
+    }
+
+    @Override
+    protected void onPreInit() {
+        startingX = new int[5];
+        int x = 20;
+        for(int i=0; i<5; i++){
+            startingX[i] = x;
+            x += 35;
+        }
     }
 
     @Override
@@ -38,16 +48,15 @@ public class BrickBreakerApp extends GameApplication {
 
         spawnBricks();
 
-//        spawn("brick", 310, 300);
         ball = spawn("ball", 280, 350);
     }
 
     private void spawnBricks(){
         Random r = new Random();
-        for(int y = 100; y < 300; y += 25){
-            int temp = r.nextInt(10, 100);
-            for(int x = temp; x<Glob.WINDOW_WIDTH - temp; x += 65){
-                spawn("brick", x, y);
+        for(int y = 30 ;y < 300; y+= 30){
+            int x = startingX[r.nextInt(0, startingX.length)];
+            for(int i=x; i < Glob.WINDOW_WIDTH - x; i += 70){
+                spawn("brick", i, y);
             }
         }
     }
