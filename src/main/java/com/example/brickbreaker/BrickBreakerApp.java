@@ -2,11 +2,15 @@ package com.example.brickbreaker;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.app.scene.GameView;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import com.example.brickbreaker.components.HpComponent;
 import com.example.brickbreaker.menu.CustomSceneFactory;
+import com.example.brickbreaker.scenes.GameOverScene;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -48,7 +52,7 @@ public class BrickBreakerApp extends GameApplication {
 
         spawnBricks();
 
-        ball = spawn("ball", 280, 350);
+        ball = spawn("ball");
     }
 
     private void spawnBricks(){
@@ -99,7 +103,11 @@ public class BrickBreakerApp extends GameApplication {
             Point2D ballVelocity = ball.getObject("velocity");
             Point2D ballPosition = ball.getPosition();
             if(ballPosition.getY() > 580){ //bottom rect wall
-                ball.removeFromWorld();
+                Rectangle r = new Rectangle(20, 20, Color.YELLOW);
+
+                StackPane stackPane = new StackPane(r);
+                FXGL.getSceneService().pushSubScene(new GameOverScene());
+//                ball.removeFromWorld();
             }else if(ballPosition.getX() < 0 || ballPosition.getX() > 580){ //left and right rect wall
                 ball.setProperty("velocity", new Point2D(-ballVelocity.getX(), ballVelocity.getY()));
             }else{ //top rect wall
@@ -109,9 +117,9 @@ public class BrickBreakerApp extends GameApplication {
         });
 
         new Thread(() ->{
-            onCollisionBegin(EntityType.BALL, EntityType.BRICK, (ball, brick) -> {
+            onCollision(EntityType.BALL, EntityType.BRICK, (ball, brick) -> {
                 Point2D ballVelocity = ball.getObject("velocity");
-                //            brick.getComponent(HpComponent.class).changeTexture(brick);
+                brick.getComponent(HpComponent.class).changeTexture(brick);
 
                 if(ball.getRightX() == brick.getX() && (ball.getY() < brick.getBottomY() && ball.getBottomY() > brick.getY())){ //left
                     ball.setProperty("velocity", new Point2D(-ballVelocity.getX(), ballVelocity.getY()));
@@ -121,7 +129,7 @@ public class BrickBreakerApp extends GameApplication {
                     ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
                 }
 
-                brick.removeFromWorld();
+//                brick.removeFromWorld();
                 return null;
             });
         }).run();

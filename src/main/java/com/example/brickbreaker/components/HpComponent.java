@@ -14,7 +14,6 @@ public class HpComponent extends Component {
         if(this.hp < 1){
             brick.removeFromWorld();
         }else{
-            System.out.println(this.hp);
             Image i = switch (this.hp){
                 case 2: yield FXGL.getAssetLoader().loadImage("brick_damaged.png");
                 case 1: yield FXGL.getAssetLoader().loadImage("brick_destroyed.png");

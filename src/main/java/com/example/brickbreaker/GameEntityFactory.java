@@ -17,7 +17,7 @@ public class GameEntityFactory implements EntityFactory {
                 .type(EntityType.PLAYER)
                 .collidable()
                 .viewWithBBox(new Rectangle(50, 20, Color.BLACK))
-                .at((Glob.WINDOW_HEIGHT / 2) - 20, Glob.WINDOW_WIDTH-100)
+                .at(Glob.WINDOW_HEIGHT / 2, Glob.WINDOW_WIDTH - 50)
                 .buildAndAttach();
     }
 
@@ -38,6 +38,7 @@ public class GameEntityFactory implements EntityFactory {
                 .collidable()
                 .viewWithBBox("ball.png")
                 .with("velocity", new Point2D(Glob.BALL_VELOCITY_X,  Glob.BALL_VELOCITY_Y))
+                .at(Glob.WINDOW_WIDTH / 2, (Glob.WINDOW_HEIGHT / 2) + 100)
                 .buildAndAttach();
     }
 }
