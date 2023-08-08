@@ -2,7 +2,6 @@ package com.example.brickbreaker;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.app.scene.GameView;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.example.brickbreaker.components.HpComponent;
@@ -10,9 +9,6 @@ import com.example.brickbreaker.menu.CustomSceneFactory;
 import com.example.brickbreaker.scenes.GameOverScene;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 import java.util.Map;
 import java.util.Random;
@@ -45,8 +41,6 @@ public class BrickBreakerApp extends GameApplication {
     @Override
     protected void initGame() {
         FXGL.getGameWorld().addEntityFactory(new GameEntityFactory());
-
-        FXGL.entityBuilder().type(EntityType.BORDER).collidable().viewWithBBox(new Rectangle(570,570, Color.TRANSPARENT)).at(15,15).buildAndAttach();
 
         player = spawn("player");
 
@@ -89,6 +83,15 @@ public class BrickBreakerApp extends GameApplication {
     protected void onUpdate(double tpf) {
         Point2D ballVelocity = ball.getObject("velocity");
         ball.translate(ballVelocity);
+
+        Point2D ballPosition = ball.getPosition();
+        if(ballPosition.getX() < 0 || ballPosition.getX() > Glob.WINDOW_WIDTH - 15){
+            ball.setProperty("velocity", new Point2D(-ballVelocity.getX(), ballVelocity.getY()));
+        }else if(ballPosition.getY() < 0){
+            ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
+        }else if(ballPosition.getY() > Glob.WINDOW_HEIGHT - 15){
+            FXGL.getSceneService().pushSubScene(new GameOverScene());
+        }
     }
 
     @Override
@@ -96,23 +99,6 @@ public class BrickBreakerApp extends GameApplication {
         onCollision(EntityType.BALL, EntityType.PLAYER, (ball, player) -> {
             Point2D ballVelocity = ball.getObject("velocity");
             ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
-            return null;
-        });
-
-        onCollisionEnd(EntityType.BALL, EntityType.BORDER, (ball, border) -> {
-            Point2D ballVelocity = ball.getObject("velocity");
-            Point2D ballPosition = ball.getPosition();
-            if(ballPosition.getY() > 580){ //bottom rect wall
-                Rectangle r = new Rectangle(20, 20, Color.YELLOW);
-
-                StackPane stackPane = new StackPane(r);
-                FXGL.getSceneService().pushSubScene(new GameOverScene());
-//                ball.removeFromWorld();
-            }else if(ballPosition.getX() < 0 || ballPosition.getX() > 580){ //left and right rect wall
-                ball.setProperty("velocity", new Point2D(-ballVelocity.getX(), ballVelocity.getY()));
-            }else{ //top rect wall
-                ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
-            }
             return null;
         });
 
