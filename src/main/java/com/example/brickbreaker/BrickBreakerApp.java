@@ -8,7 +8,13 @@ import com.example.brickbreaker.components.HpComponent;
 import com.example.brickbreaker.menu.CustomSceneFactory;
 import com.example.brickbreaker.scenes.GameOverScene;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 import java.util.Map;
 import java.util.Random;
@@ -47,6 +53,9 @@ public class BrickBreakerApp extends GameApplication {
         spawnBricks();
 
         ball = spawn("ball");
+
+        Image bg = FXGL.getAssetLoader().loadImage("brick-wall.png");
+        FXGL.getGameScene().setBackgroundRepeat(bg);
     }
 
     private void spawnBricks(){
@@ -76,7 +85,27 @@ public class BrickBreakerApp extends GameApplication {
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-//        vars.put("Score", 0);
+        vars.put("Score", 0);
+    }
+
+    @Override
+    protected void initUI() {
+        Text scoreText = new Text();
+        scoreText.setX(10);
+        scoreText.setY(20);
+        scoreText.setText("SCORE: ");
+        scoreText.setFont(Font.font("calibri", FontWeight.NORMAL, FontPosture.REGULAR, 24));
+        scoreText.setStroke(Color.WHITE);
+
+        Text score = new Text();
+        score.setX(80);
+        score.setY(20);
+        score.setFont(Font.font("calibri", FontWeight.NORMAL, FontPosture.REGULAR, 24));
+        score.setStroke(Color.WHITE);
+
+        score.textProperty().bind(getWorldProperties().intProperty("Score").asString());
+
+        getGameScene().addUINodes(scoreText, score);
     }
 
     @Override
@@ -98,7 +127,11 @@ public class BrickBreakerApp extends GameApplication {
     protected void initPhysics() {
         onCollision(EntityType.BALL, EntityType.PLAYER, (ball, player) -> {
             Point2D ballVelocity = ball.getObject("velocity");
-            ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
+            if(ball.getBottomY() - 1 == player.getY()){
+                ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
+            }else{
+                ball.setProperty("velocity", new Point2D(-ballVelocity.getX(), ballVelocity.getY()));
+            }
             return null;
         });
 
@@ -107,6 +140,8 @@ public class BrickBreakerApp extends GameApplication {
                 Point2D ballVelocity = ball.getObject("velocity");
                 brick.getComponent(HpComponent.class).changeTexture(brick);
 
+                inc("Score", +10);
+
                 if(ball.getRightX() == brick.getX() && (ball.getY() < brick.getBottomY() && ball.getBottomY() > brick.getY())){ //left
                     ball.setProperty("velocity", new Point2D(-ballVelocity.getX(), ballVelocity.getY()));
                 }else if(ball.getX() == brick.getRightX() && (ball.getY() < brick.getBottomY() && ball.getBottomY() > brick.getY())){ //right
@@ -114,8 +149,6 @@ public class BrickBreakerApp extends GameApplication {
                 }else{
                     ball.setProperty("velocity", new Point2D(ballVelocity.getX(), -ballVelocity.getY()));
                 }
-
-//                brick.removeFromWorld();
                 return null;
             });
         }).run();

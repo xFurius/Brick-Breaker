@@ -15,7 +15,7 @@ public class MainMenu extends FXGLMenu {
     public MainMenu(MenuType type) {
         super(MenuType.MAIN_MENU);
 
-        Image wall = FXGL.getAssetLoader().loadImage("brick-wall.png");
+        Image wall = FXGL.getAssetLoader().loadImage("game-start.png");
         Rectangle r = new Rectangle(600, 600);
         r.setFill(new ImagePattern(wall));
 
